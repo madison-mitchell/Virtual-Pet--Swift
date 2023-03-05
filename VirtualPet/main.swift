@@ -16,16 +16,9 @@ var pet = VirtualPet(name: petName)
 print("\n\(pet.name) loves you already! *wag wag wag*")
 
 while pet.isAlive {
-    print("_____________________________________________________________")
-    print("| Health\t| Hunger\t| Thirst\t| Energy\t| Mood\t\t|")
-    print("| \(pet.health)\t\t| \(pet.hunger)\t\t| \(pet.thirst)\t\t| \(pet.energy)\t\t| \(pet.mood)\t\t|")
-    print("_____________________________________________________________")
-
-    print("\nHow would you like to interact with \(pet.name)?")
-    print("1.\tFeed")
-    print("2.\tWater")
-    print("3.\tPlay")
-    let userChoice: Int = Int(readLine()!)!
+    mainMenu()
+    var userChoice: Int = 0
+    userChoice = userInput()
     
     if userChoice == 1 {
         pet.feed()
@@ -39,7 +32,8 @@ while pet.isAlive {
         print("\nWhat would you like to play?")
         print("1.\tFrisbee")
         print("2.\tCards")
-        let userChoice = Int(readLine()!)!
+        
+        userChoice = userInput()
         
         if userChoice == 1 {
             pet.play(activity: 1)
@@ -55,3 +49,30 @@ while pet.isAlive {
 
 print("Oh no! \(pet.name) fainted!")
 print("\nThank you for playing Virtual Pet!\n\n\n")
+
+
+func mainMenu() {
+    print("_____________________________________________________________")
+    print("| Health\t| Hunger\t| Thirst\t| Energy\t| Mood\t\t|")
+    print("| \(pet.health)\t\t| \(pet.hunger)\t\t| \(pet.thirst)\t\t| \(pet.energy)\t\t| \(pet.mood)\t\t|")
+    print("_____________________________________________________________")
+
+    print("\nHow would you like to interact with \(pet.name)?")
+    print("1.\tFeed")
+    print("2.\tWater")
+    print("3.\tPlay")
+}
+
+func userInput() -> Int {
+    var userChoice: Int = 0
+    
+    while true {
+        if let input = readLine(), let choice = Int(input){
+            userChoice = choice
+            return userChoice
+            break
+        } else {
+            print("Please enter a number corresponding to your choice of how to interact with \(pet.name).")
+        }
+    }
+}

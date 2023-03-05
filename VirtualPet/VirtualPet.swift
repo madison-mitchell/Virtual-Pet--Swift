@@ -64,8 +64,12 @@ class VirtualPet {
         thirst -= 13
         energy -= 11
         
-        energy = energy <= 0 ? 0 : energy
-        mood = energy <= 30 ? "Bored" : "Sleepy"
+        health = health <= 0 ? 0 : health >= 100 ? 100 : health
+        hunger = hunger <= 0 ? 0 : hunger >= 100 ? 100 : hunger
+        thirst = thirst <= 0 ? 0 : thirst >= 100 ? 100 : thirst
+        energy = energy <= 0 ? 0 : energy >= 100 ? 100 : energy
+        mood = energy <= 10 ? "Sleepy" : energy <= 30 ? "Sleepy" : energy >= 100 ? "Spazzy" : "Lazy"
+        
         health -= energy <= 0 ? 5 : 0
         isAlive = health <= 0 ? false : true
     }
